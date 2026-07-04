@@ -228,10 +228,7 @@ Java Compilation Error
 - Ensure "JAVA_HOME" is configured.
 - Check that all Java source files are in the correct folder.
 
-Web Pages Not Loading
-
-OUTPUT:
-
+Web Pages Not LoadinG
 
 - Make sure all HTML, CSS, and JavaScript files are in the same project directory.
 - Verify file names match the references exactly.
@@ -239,3 +236,6 @@ OUTPUT:
 Author
 
 Pagadala Bhavana
+
+OUTPUT:
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/f4f8ace3-c93c-4f45-aa0e-2aff85597b73" />
