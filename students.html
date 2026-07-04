@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-container" style="width:90%; max-width:900px;">
+    <h2>Student Records</h2>
+
+    <input type="text" id="search" placeholder="Search by Name..." onkeyup="searchStudent()">
+
+    <br><br>
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentTable">
+        </tbody>
+    </table>
+
+    <br>
+
+    <a href="dashboard.html">
+        <button>Back to Dashboard</button>
+    </a>
+</div>
+
+<script>
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+function displayStudents(data) {
+    let table = document.getElementById("studentTable");
+    table.innerHTML = "";
+
+    data.forEach((student, index) => {
+        table.innerHTML += `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.course}</td>
+            <td>
+                <button onclick="deleteStudent(${index})">
+                    Delete
+                </button>
+            </td>
+        </tr>`;
+    });
+}
+
+function deleteStudent(index) {
+    students.splice(index, 1);
+    localStorage.setItem("students", JSON.stringify(students));
+    displayStudents(students);
+}
+
+function searchStudent() {
+    let value = document.getElementById("search").value.toLowerCase();
+
+    let filtered = students.filter(student =>
+        student.name.toLowerCase().includes(value)
+    );
+
+    displayStudents(filtered);
+}
+
+displayStudents(students);
+</script>
+
+</body>
+</html>
